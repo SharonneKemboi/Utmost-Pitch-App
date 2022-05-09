@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+{% endblock%}
+{% block content%}
+    <div class="container">
+<h3 class="comment-title">Comments for <strong>{{pitch.title | upper }}</strong> by <strong>{{pitch.user.name | upper}}</strong></h3>
+        {%for comment in comments%}
+        <p><strong>{{comment.user.name | upper}}</strong>: {{comment.content}}</p>
+        <hr>
+        {% endfor %}
+    </div>
+
+{% endblock %

@@ -59,6 +59,8 @@ class Pitch(db.Model):
     title = db.Column(db.String)
     content = db.Column(db.String)
     category = db.Column(db.String)
+    date = db.Column(db.String)
+    time = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     comments = db.relationship("Comment", backref = "pitch", lazy = "dynamic")
 
@@ -78,6 +80,8 @@ class Comment(db.Model):
     __tablename__ = "comments"
     id = db.Column(db.Integer, primary_key = True)
     content = db.Column(db.String)
+    date = db.Column(db.String)
+    time = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
 

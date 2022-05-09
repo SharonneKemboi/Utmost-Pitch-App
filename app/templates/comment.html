@@ -3,7 +3,7 @@
 
 {% block content%}
 <div class="container">
-    comment for {{title}}
+    <h2>Comment on {{pitch.title | upper}} by {{pitch.user.name | upper}}</h2>
     {{wtf.quick_form(form)}}
 </div>
 {% endblock %}

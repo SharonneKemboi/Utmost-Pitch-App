@@ -13,8 +13,8 @@ def register():
         name = form.username.data
         email = form.email.data
         pass_input = form.password.data
-
-        new_user = User(name = name, email = email, password = pass_input)
+        profile_pic = "photos/default.png"
+        new_user = User(name = name, email = email, password = pass_input,profile_pic =profile_pic)
         new_user.save_user()
         create_mail("Hey","email/email",new_user.email,name = new_user.name)
 
