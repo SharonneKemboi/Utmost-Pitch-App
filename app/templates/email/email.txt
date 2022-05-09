@@ -1,0 +1,3 @@
+Hola {{user.username}}
+Welcome to Utmost Pitches App
+Its great to see that you have signed up. Welcome and feel at home. 
