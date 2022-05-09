@@ -1,5 +1,5 @@
 import unittest
-from app.models import Pitch,User
+from app.models import Pitch,User,Comment
 
 class TestPitch(unittest.TestCase):
     """
@@ -41,7 +41,7 @@ class TestPitch(unittest.TestCase):
         pitches = Pitch.query.all()
         self.assertTrue(len(pitches) > 0)
 
-    def test_relationship(self):
+    def test_relationship_user(self):
         """
         Will test whether the pitch is correctly related to the user who posted it
         """
