@@ -1,1 +1,10 @@
 {% extends 'bootstrap/base.html'%}
+
+{% block styles%}
+    {{ super() }}
+    <link href="https://fonts.googleapis.com/css?family=Gabriela" rel="stylesheet">
+   
+{% endblock %}
+{% block navbar %}
+    {% include "navbar.html" %}
+{% endblock %}

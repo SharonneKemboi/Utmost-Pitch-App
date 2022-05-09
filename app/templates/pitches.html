@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block styles%}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+{% endblock%}
+{% block content %}
+    <div class="container">
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+        {% endfor %}
+        {% if pitches %}
+            {% for row in pitches | batch(3) %}
+            <div class="row">
+                {% for pitch in row %}
+                <div class="col-md-3 source-card">
+                    <h3 class="source-name">{{pitch.title | upper}}</h3>
+                    <p>Pitched by <strong>{{pitch.user.name}}</strong></p>
+                    <p>{{pitch.content}}</p>
+                    <p>CATEGORY: <strong>{{pitch.category | upper}}</strong></p>
+                    {% for comment in pitch.get_pitch_comments() %}
+                        <p>{{comment.content}}</p>
+                    {%endfor%}
+                </div>
+                {% endfor %}
+            </div> 
+            {% endfor %}
+        {% else %}
+            <h2>No pitches in this category</h2>
+        {% endif %}
+    </div>
+{% endblock %} 
