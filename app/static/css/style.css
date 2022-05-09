@@ -10,3 +10,11 @@ body {
     background: #050505;
     background-size: cover
 }
+
+.navbar {
+    background-color: rgb(102, 238, 154);
+    border: none;
+}
+.navbar a {
+    color: white;
+}
