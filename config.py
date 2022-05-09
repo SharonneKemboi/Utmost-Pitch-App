@@ -6,6 +6,7 @@ class Config:
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST = "app/static/photos"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
     
 
     #email 
@@ -23,7 +24,7 @@ class DevConfig(Config):
     Args:
         COnfig - this is the parent config class from which we inherit its properties
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Password@localhost/pitches'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Atara@localhost/pitches'
     DEBUG = True
 
 
@@ -33,7 +34,8 @@ class ProdConfig(Config):
     Args:
         Config - this is the parent config class from which we inherit its properties
     """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Password@localhost/pitches_test'
+    pass
+   
 
 
 class TestConfig(Config):
@@ -42,7 +44,7 @@ class TestConfig(Config):
     Args:
         Config - this is the parent config class from which we inherit its properties
     """
-    pass
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Atara@localhost/pitches_test'
 
 
 config_options = {
