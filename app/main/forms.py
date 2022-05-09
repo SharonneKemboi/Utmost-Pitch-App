@@ -10,3 +10,8 @@ class AddPitchForm(FlaskForm):
         choices=[("pick-ups", "pick-ups"),("boring","boring")],validators = [DataRequired()]
     )
     submit = SubmitField("Add pitch")
+
+
+class AddComment(FlaskForm):
+    content = TextAreaField("Add comment")
+    submit = SubmitField("Add")    
