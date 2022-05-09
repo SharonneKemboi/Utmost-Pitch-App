@@ -3,7 +3,8 @@ from ..models import User,Pitch,Comment
 from .forms import AddPitchForm
 from . import main
 
-@main.route("/")
+
+@main.route("/", methods = ["GET","POST"])
 def index():
     form = AddPitchForm()
     title = "Create Pitch"
