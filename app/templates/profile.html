@@ -28,8 +28,7 @@
                     <img src="{{url_for('static',filename='pitch.user.profile_pic')}}" alt="">
                     <h3 class="source-name">{{pitch.title | upper}}</h3>
                     <p>Posted by <strong>{{pitch.user.name}}</strong></p>
-                    <p>Date: {{pitch.date}}</p>
-                    <p>Time: {{pitch.time}}</p>
+                    <p>Date: {{pitch.date}} at {{pitch.time}}</p>
                     <p>"{{pitch.content}}"</p>
                     <p>CATEGORY: <strong>{{pitch.category | upper}}</strong></p>
                     {% if current_user.is_authenticated %}

@@ -8,7 +8,8 @@ from app.email import create_mail
 @auth.route("/register", methods = ["GET","POST"])
 def register():
     form = RegistrationForm()
-
+    
+    title = 'Utmost Pitches- Register'
     if form.validate_on_submit():
         name = form.username.data
         email = form.email.data
@@ -19,13 +20,14 @@ def register():
         create_mail("Hey","email/email",new_user.email,name = new_user.name)
 
 
-    return render_template("auth/register.html",form = form)
+    return render_template("auth/register.html",form = form, title = title)
 
 
 @auth.route("/login", methods = ["GET","POST"])
 def login():
     form = LoginForm()
 
+    title = 'Utmost Pitches- Register'
     if form.validate_on_submit():
         user_email = form.email.data
         user_password = form.password.data
@@ -39,7 +41,7 @@ def login():
             return render_template("main.index", user = user)
             
             flash("Invalid username or pasword")
-    return render_template("auth/login.html",form = form)    
+    return render_template("auth/login.html",form = form, title = title)    
 
 
 auth.route("/logout")
