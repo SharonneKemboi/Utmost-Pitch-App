@@ -15,7 +15,7 @@ class User(UserMixin, db.Model):
     profile_pic  = db.Column(db.String)
     pitches = db.relationship("Pitch", backref= "user", lazy="dynamic")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
-    pass_locked = db.relationship(db.String)
+    pass_locked = db.Column(db.String)
     
 
     def save_user(self):
@@ -56,7 +56,7 @@ class Pitch(db.Model):
     comments = db.relationship("Comment", backref = "pitch", lazy = "dynamic")
 
     def save_pitch(self):
-        db.session(self)
+        db.session.add(self)
         db.session.commit()
 
     def get_pitch_comments(self):
