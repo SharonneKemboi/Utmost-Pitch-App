@@ -5,17 +5,16 @@ class Config:
     General configuration parent class
     '''
     SECRET_KEY = os.environ.get('SECRET_KEY')
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Password@localhost/pitches'
-    UPLOADED_PHOTOS_DEST = "app/static/assets"
+    UPLOADED_PHOTOS_DEST = "app/static/photos"
     
 
-    #email stuff
+    #email 
     MAIL_SERVER = "smtp.gmail.com"
     MAIL_PORT = 587
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("EMAIL_USERNAME")
     MAIL_PASSWORD  = os.environ.get("EMAIL_PASSWORD")
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Password@localhost/pitches'
+   
 
 
 class DevConfig(Config):
@@ -24,6 +23,7 @@ class DevConfig(Config):
     Args:
         COnfig - this is the parent config class from which we inherit its properties
     """
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Password@localhost/pitches'
     DEBUG = True
 
 
@@ -33,7 +33,7 @@ class ProdConfig(Config):
     Args:
         Config - this is the parent config class from which we inherit its properties
     """
-    pass
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Password@localhost/pitches_test'
 
 
 class TestConfig(Config):

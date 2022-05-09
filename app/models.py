@@ -16,6 +16,12 @@ class User(UserMixin, db.Model):
     pitches = db.relationship("Pitch", backref= "user", lazy="dynamic")
     comments = db.relationship("Comment", backref="user", lazy="dynamic")
     pass_locked = db.relationship(db.String)
+    
+
+    def save_user(self):
+        db.session.add(self)
+        db.session.commit()
+
 
     @property
     def password(self):
@@ -31,6 +37,11 @@ class User(UserMixin, db.Model):
     def get_user_pitches(self):
         user = User.query.filter_by(id = self.id).first()
         return user.pitches
+
+    def get_user_comments(self):
+        user  = User.query.filter_by(id = self.id).first()
+        return user.comments
+
 
 class Pitch(db.Model):
     """
@@ -62,3 +73,7 @@ class Comment(db.Model):
     content = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()

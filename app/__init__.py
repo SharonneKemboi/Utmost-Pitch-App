@@ -27,6 +27,6 @@ def create_app(config_name):
     db.init_app(app)
 
     #initialize the uploads
-    configure_uploads(app,db)
+    configure_uploads(app,photos)
 
     return app
