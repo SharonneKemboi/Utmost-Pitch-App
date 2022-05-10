@@ -117,3 +117,34 @@ hr {
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+
+.bio-btn {
+    border: none;
+    background: steelblue;
+    color: white
+}
+
+.btn-container {
+    margin-top: 10px;
+}
+
+.extras {
+    display: flex;
+    justify-content: space-between
+}
+.extras button {
+    margin-left: 25px;
+}
+.extras .fa-thumbs-up {
+    color: crimson
+}
+.extras .fa-thumbs-down {
+    color: lime
+}
+.login-btn {
+    color: steelblue;
+}
+.profile-pic {
+    max-height: 300px;
+    max-width: 300px;
+}

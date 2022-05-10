@@ -23,6 +23,8 @@ def create_app(config_name):
     """
     #instantiate Flask
     app = Flask(__name__)
+   
+    
 
     #add the configurations
     app.config.from_object(config_options[config_name])
