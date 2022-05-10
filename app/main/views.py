@@ -85,21 +85,26 @@ def view_comments(pitch_id):
     title = "Comments"
     comments = pitch.get_pitch_comments()
 
-    return render_template("view.comments", comments = comments, pitch = pitch,title = title)
+    return render_template("view.comments.html", comments = comments, pitch = pitch,title = title)
 
 
 @main.route("/profile/<user_id>")
 @login_required
 def profile(user_id):
     user = User.query.filter_by(id = user_id).first()
-    user_pitches = user.pitches
-    if user_pitches:
-        pitches = user_pitches
-    else:
-        pitches = False
+    pitches = Pitch.query.filter_by(user_id = user.id).order_by(Pitch.time.desc())
     title = user.name.upper()
     return render_template("profile.html", pitches = pitches, user = user, title = title)
 
+
+@main.route("/<user_id>/profile")
+def user(user_id):
+    user = User.query.filter_by(id = user_id).first()
+    pitches = Pitch.query.filter_by(user_id = user.id).order_by(Pitch.time.desc())
+    title = user.name.upper()
+    return render_template("user.html", pitches = pitches, user = user,title = title)
+
+    
 @main.route("/pic/<user_id>/update", methods = ["POST"])
 @login_required
 def update_pic(user_id):
