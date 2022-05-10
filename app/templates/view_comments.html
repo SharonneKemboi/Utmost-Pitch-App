@@ -2,11 +2,15 @@
 
 {% block styles%}
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 {% endblock%}
 {% block content%}
     <div class="container">
-        <h3 class="comment-title">Comments for <strong>{{pitch.title | upper }}</strong> by <strong>{{pitch.user.name | upper}}</strong></h3>
+        <div class="row comment-row">
+            <h3 class="comment-title">Comments for <strong>{{pitch.title | upper }}</strong> by <strong>{{pitch.user.name | upper}}</strong></h3>
+            <a class="pitch-comment" href="{{url_for('main.comment',user = current_user.id, pitch_id = pitch.id)}}"><button class="btn btn-info mr-0">Add
+                    a comment</button></a>
+        </div>    
         {% if comments %}
             {%for comment in comments%}
             <div class="row">
@@ -14,7 +18,7 @@
                     <img src="{{url_for('static', filename=comment.user.profile_pic)}}" class="img-thumbnail d-inline" height="60px" width="60px">
                 </div>
                 <div class="col">
-                    <p class="d-inline"><strong>{{comment.user.name | upper}}</strong>: {{comment.content}}</p>
+                    <p class="d-inline"><strong>{{comment.user.name | upper}}</strong>: " {{comment.content}} "</p>
                     <p>Added on <strong>{{comment.date}}</strong> at <strong>{{comment.time}}</strong></p>
                 </div>
             </div>

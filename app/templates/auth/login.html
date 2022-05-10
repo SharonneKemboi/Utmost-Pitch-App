@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf%}
 
-{% block styles%}
+{% block styles% }
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 {% endblock%}
 
 {% block content%}
@@ -15,6 +15,6 @@
         </div>
         {% endfor %}
         {{wtf.quick_form(form)}}
-        <a class="btn-container d-block mt-2" href="{{url_for('auth.register')}}">Sign Up</a>
+        <p>You don't have an account? <a class="login-btn btn-container d-block mt-2" href="{{url_for('auth.register')}}">Sign Up</a>
     </div>
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block styles%}
 {{ super() }}
-<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}">
+<link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 {% endblock%}
 
 {% block content %}
@@ -13,36 +13,54 @@
             {{ message }}
         </div>
         {% endfor %}
-
-        <h1 class="text-center">Welcome to <em>UTMOST PERFECT</em></h1>
-        <h2 class="text-center">Categories</h2>
+        <div class="jumbotron jumbotron-fluid " style="background-color: rgb(159, 157, 157) ;">
+            <div class="container">
+                <h1 class="text-center animated lightSpeedIn delay-0.4s">Welcome to <em>Utmost Pitches App</em></h1>
+                <p class="text-center" style="color: black;"> When we sell our ideas, the audience must first buy us."</p>
+                <hr class="my-2">
+                <h2 class="text-center">How do you make a pitch stand out?</h2>
+                <ul class="text-center">
+                    <li>A little humility goes a long way. ...</li>
+                    <li>Make it personal. ...</li>
+                    <li>Use simple data visualization in your deck</li>
+                    <li>Get your most compelling points across early.</li>
+                </ul>
+                <p class="lead">
+                   <button class="btn btn-lg "><a href="{{url_for('main.add_pitch',uname = current_user.name)}}">Add A Pitch</a></button>   
+                </p>
+            </div>
+        </div>
+        
+        <h2 class="text-center" style="color: black;">Pitches Categories</h2>
         <div class="row categories">
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='music')}}">Music</a>
+                <a href="{{url_for('main.categories',category='music')}}">Music Pitch</a>
             </div>
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='sales')}}">Sales</a>
+                <a href="{{url_for('main.categories',category='sales')}}">Sales Pitch</a>
             </div>
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='pick-up')}}">Pick Up Lines</a>
+                <a href="{{url_for('main.categories',category='pick-up')}}">Pick Up Lines Pitch</a>
             </div>
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='goofy')}}">Goofy</a>
+                <a href="{{url_for('main.categories',category='goofy')}}">Goofy Pitch</a>
             </div>
         </div>
         <div class="row categories">
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='cheesy')}}">Cheesy</a>
+                <a href="{{url_for('main.categories',category='cheesy')}}">Cheesy Pitch</a>
             </div>
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='dull')}}">Dull</a>
+                <a href="{{url_for('main.categories',category='dull')}}">Dull Pitch</a>
             </div>
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='random')}}">Random</a>
+                <a href="{{url_for('main.categories',category='random')}}">Random Pitch</a>
             </div>
             <div class="category col-xs-12 col-sm-4 col-md-3 col-lg-3">
-                <a href="{{url_for('main.categories',category='all')}}">All</a>
+                <a href="{{url_for('main.categories',category='all')}}">General Pitches</a>
             </div>
         </div>
     </div>
 {% endblock %} 
+
+
