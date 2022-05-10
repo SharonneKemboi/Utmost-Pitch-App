@@ -19,6 +19,7 @@ class TestPitch(unittest.TestCase):
         """
         Pitch.query.delete()
         User.query.delete()
+        Comment.query.delete()
 
     def test_instance(self):
         """

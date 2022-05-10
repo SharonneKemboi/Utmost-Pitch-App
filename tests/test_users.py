@@ -1,5 +1,5 @@
 import unittest
-from app.models import User
+from app.models import User,Pitch
 
 class TestUsers(unittest.TestCase):
     """
@@ -14,6 +14,7 @@ class TestUsers(unittest.TestCase):
 
     def tearDown(self):
         User.query.delete()
+        Pitch.query.delete()
 
     def test_instance(self):
         """

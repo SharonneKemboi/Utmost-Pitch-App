@@ -72,7 +72,9 @@ class Pitch(db.Model):
 
     def get_pitch_comments(self):
         pitch = Pitch.query.filter_by(id = self.id).first()
-        return pitch.comments
+
+        comments = Comment.query.filter_by(pitch_id = pitch.id).order_by(Comment.time.desc())
+        return comments
 
 class Comment(db.Model):
     """

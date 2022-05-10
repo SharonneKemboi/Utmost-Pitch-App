@@ -18,9 +18,9 @@ def index():
 def categories(category):
     pitches = None
     if category == "all":
-        pitches = Pitch.query.all()
+        pitches = Pitch.query.order_by(Pitch.time.desc())
     else:
-        pitches = Pitch.query.filter_by(category = category).all()
+        pitches = Pitch.query.filter_by(category = category).order_by(Pitch.time.desc()).all()
 
     return render_template("pitches.html", pitches = pitches, title = category.upper())
 
@@ -71,7 +71,6 @@ def comment(user,pitch_id):
 
         new_comment = Comment(content = content, user = user, pitch = pitch, time = time, date = date, title = title )
         new_comment.save_comment()
-        flash(f"Comment for {pitch.title.upper()} added")
 
         return redirect(url_for("main.view_comments", pitch_id = pitch_id))
     return render_template("comment.html", title = pitch.title,form = form)
