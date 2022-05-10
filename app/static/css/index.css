@@ -1,0 +1,14 @@
+.navbar {
+    background-color: rgb(47, 12, 47);
+    border: none;
+}
+.navbar a {
+    color: white;
+    font-family: 'Gabriela';
+    font-weight: 900;
+    font-size: 1.9rem;
+}
+
+ul li{
+    list-style-type: none;
+}
