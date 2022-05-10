@@ -18,7 +18,7 @@
                     <img src="{{url_for('static', filename=comment.user.profile_pic)}}" class="img-thumbnail d-inline" height="60px" width="60px">
                 </div>
                 <div class="col">
-                    <p class="d-inline"><strong>{{comment.user.name | upper}}</strong>: " {{comment.content}} "</p>
+                    <p class="d-inline"><a href="{{url_for('main.user',user_id=comment.user.id)}}"><strong>{{comment.user.name | upper}}</strong></a>: " {{comment.content}} "</p>
                     <p>Added on <strong>{{comment.date}}</strong> at <strong>{{comment.time}}</strong></p>
                 </div>
             </div>

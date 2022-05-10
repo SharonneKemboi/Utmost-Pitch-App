@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-5 col-lg-5">
                 <div class="img-container">
-                    <img src="{{url_for('static', filename = user.profile_pic)}}" class="img-thumbnail">
+                    <img src="{{url_for('static', filename = user.profile_pic)}}" class="img-thumbnail profile-pic">
                 </div>
             </div>
             <div class="col-sm-12 col-md-5 col-lg-5">
@@ -28,7 +28,7 @@
                     <img src="{{url_for('static',filename='pitch.user.profile_pic')}}" alt="">
                     <h3 class="source-name">{{pitch.title | upper}}</h3>
                     <p>Pitched by <strong>{{pitch.user.name}}</strong></p>
-                    <p>Date: {{pitch.date}} at {{pitch.time}}</p>
+                    <p>Date: <strong>{{pitch.date}}</strong> at <strong>{{pitch.time}}</strong></p>
                     <p>"{{pitch.content}}"</p>
                     <p>PITCH CATEGORY: <strong>{{pitch.category | upper}}</strong></p>
                     {% if current_user.is_authenticated %}

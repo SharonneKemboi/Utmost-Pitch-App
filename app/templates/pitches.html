@@ -19,7 +19,7 @@
                 {% for pitch in row %}
                 <div class="col-md-5 pitch-card">
                     <h3 class="source-name">{{pitch.title | upper}}</h3>
-                    <p>Pitched by <strong>{{pitch.user.name}}</strong></p>
+                    <p>Pitched by <a href="{{url_for('main.user',user_id = pitch.user.id)}}"><strong>{{pitch.user.name}}</strong></a></p>
                     <p>Date: <strong>{{pitch.date}}</strong> at <strong>{{pitch.time}}</strong></p>
                     <p>"{{pitch.content}}"</p>
                     <p>CATEGORY: <strong>{{pitch.category | upper}}</strong></p>
@@ -37,7 +37,10 @@
             {% endfor %}
         {% else %}
             <h2>No pitches in this category</h2>
+            {% if current_user.is_authenticated %}
             <a href="{{url_for('main.add_pitch',uname = current_user.name)}}"><button class="btn btn-info">Add A Pitch</button></a>
+       
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %} 
