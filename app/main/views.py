@@ -22,7 +22,7 @@ def categories(category):
     else:
         pitches = Pitch.query.filter_by(category = category).all()
 
-    return render_template("pitches.html", pitches = pitches, title = category)
+    return render_template("pitches.html", pitches = pitches, title = category.upper())
 
 
 
@@ -72,7 +72,8 @@ def comment(user,pitch_id):
         new_comment = Comment(content = content, user = user, pitch = pitch, time = time, date = date, title = title )
         new_comment.save_comment()
         flash(f"Comment for {pitch.title.upper()} added")
-        return redirect(url_for("main.categories", category=pitch.category))
+
+        return redirect(url_for("main.view_comments", pitch_id = pitch_id))
     return render_template("comment.html", title = pitch.title,form = form)
 
 @main.route("/<pitch_id>/comments")
@@ -92,9 +93,12 @@ def view_comments(pitch_id):
 @login_required
 def profile(user_id):
     user = User.query.filter_by(id = user_id).first()
-    pitches = user.pitches
-    title = user.name
-
+    user_pitches = user.pitches
+    if user_pitches:
+        pitches = user_pitches
+    else:
+        pitches = False
+    title = user.name.upper()
     return render_template("profile.html", pitches = pitches, user = user, title = title)
 
 @main.route("/pic/<user_id>/update", methods = ["POST"])
@@ -123,4 +127,4 @@ def update_profile(user_id):
         user.bio = bio
         db.session.commit() 
         return redirect(url_for('main.profile',user_id = user.id)) 
-    return render_template("update_profile.html",form = form)
+    return render_template("update_profile.html",form = form, title=title)
