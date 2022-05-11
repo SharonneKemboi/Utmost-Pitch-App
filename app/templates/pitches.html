@@ -36,7 +36,9 @@
             </div> 
             {% endfor %}
         {% else %}
-            <h2>No pitches in this category</h2>
+            <h2 class="text-center">No pitches in this category</h2>
+            <p class="text-center">Please Login to Add a Pitch</p>
+            <img src="" alt="" srcset="">
             {% if current_user.is_authenticated %}
             <a href="{{url_for('main.add_pitch',uname = current_user.name)}}"><button class="btn btn-info">Add A Pitch</button></a>
        

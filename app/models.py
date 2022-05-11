@@ -37,7 +37,7 @@ class User(UserMixin, db.Model):
     def password(self,password):
         self.pass_locked = generate_password_hash(password)
 
-    def verify_pass(self,password):
+    def verify_password(self,password):
         return check_password_hash(self.pass_locked,password)
 
     def get_user_pitches(self):

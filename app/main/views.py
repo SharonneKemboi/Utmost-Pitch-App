@@ -1,8 +1,8 @@
-from flask import abort, flash, render_template,redirect,url_for,request
+from flask import abort,render_template,redirect,url_for,request
 from ..models import User,Pitch,Comment
 from .forms import AddPitchForm,AddComment,EditBio
 from . import main
-from flask_login import login_required
+from flask_login import login_required,current_user
 import datetime
 from ..import photos,db
 
@@ -11,11 +11,12 @@ from ..import photos,db
 @main.route("/")
 def index():
     pitches = Pitch.query.all()
-    title = "Home"
+    title = "Home - Welcome TO Utmost Pitches App"
     return render_template("index.html", pitches = pitches, title=title)
 
 @main.route("/pitches/<category>")
 def categories(category):
+
     pitches = None
     if category == "all":
         pitches = Pitch.query.order_by(Pitch.time.desc())
@@ -68,12 +69,11 @@ def comment(user,pitch_id):
         time = time[0:5]
         date = str(dateOriginal)
         date = date[0:10]
-
-        new_comment = Comment(content = content, user = user, pitch = pitch, time = time, date = date, title = title )
+       
+        new_comment = Comment(content = content, user = user, pitch = pitch, time = time, date = date )
         new_comment.save_comment()
-
         return redirect(url_for("main.view_comments", pitch_id = pitch_id))
-    return render_template("comment.html", title = pitch.title,form = form)
+    return render_template("comment.html", pitch=pitch, title = title,form = form)
 
 @main.route("/<pitch_id>/comments")
 @login_required
@@ -85,7 +85,7 @@ def view_comments(pitch_id):
     title = "Comments"
     comments = pitch.get_pitch_comments()
 
-    return render_template("view.comments.html", comments = comments, pitch = pitch,title = title)
+    return render_template("view_comments.html", comments = comments, pitch = pitch,title = title)
 
 
 @main.route("/profile/<user_id>")

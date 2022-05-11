@@ -91,9 +91,9 @@ ul {
 }
 .pitch-card {
     padding: 10px;
-    border: 1px solid black;
+    border: 0px solid black;
     box-shadow: -1px 1px 16px -1px rgba(0, 0, 0, 0.75);
-    background: #D4E6F1;
+    background:rgb(47, 12, 47);
     margin: 10px;
     overflow: hidden;
     transition: transform 1s;
@@ -120,8 +120,10 @@ hr {
 
 .bio-btn {
     border: none;
-    background: steelblue;
-    color: white
+    background:rgb(47, 12, 47);
+    color: white;
+    font-size: 1.7rem;
+    
 }
 
 .btn-container {
@@ -136,13 +138,13 @@ hr {
     margin-left: 25px;
 }
 .extras .fa-thumbs-up {
-    color: crimson
+    color: rgb(206, 236, 150)
 }
 .extras .fa-thumbs-down {
-    color: lime
+    color: rgb(229, 241, 195)
 }
 .login-btn {
-    color: steelblue;
+    color: rgb(47, 12, 47)
 }
 .profile-pic {
     max-height: 300px;

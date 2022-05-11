@@ -1,59 +1,57 @@
-from . import auth
-from .forms import RegistrationForm,LoginForm
-from . import auth
-from app.models import User
-from .forms import RegistrationForm,LoginForm
 from flask import render_template,url_for,redirect,flash,request
-from flask_login import login_user,logout_user
-# from app.email import create_mail
+from . import auth
+from .forms import RegistrationForm,LoginForm
+from ..import db
+from app.models import User
+from flask_login import login_user,logout_user,login_required
+from app.email import create_mail
 
 @auth.route("/register", methods = ["GET","POST"])
 def register():
     form = RegistrationForm()
     
-    title = 'Utmost Pitches- Register'
+
     if form.validate_on_submit():
-        name = form.username.data
+        username = form.username.data
         email = form.email.data
-        pass_input = form.password.data
+        password = form.password.data
         profile_pic = "photos/default.png"
         bio = "User has no bio"
-        new_user = User(name = name, email = email, password = pass_input,profile_pic = profile_pic, bio = bio)
-        new_user.save_user()
-        # create_mail("Hey Karibu","email/email",new_user.email,name = new_user.name)
-
-
+        new_user = User(name = username, email = email, password = password,profile_pic = profile_pic, bio = bio)
+        # new_user.save_user()
+        db.session.add(new_user)
+        db.session.commit()
+        create_mail("Hey Karibu","email/email",new_user.email,name = new_user.name)
+        return redirect(url_for('auth.login'))
+    title = 'Utmost Pitches- Register'
     return render_template("auth/register.html",form = form, title = title)
+    #Return redirect
 
 
 @auth.route("/login", methods = ["GET","POST"])
 def login():
-    form = LoginForm()
+    login_form= LoginForm()
 
-    title = 'Utmost Pitches- Register'
-    if form.validate_on_submit():
-        user_email = form.email.data
-        user_password = form.password.data
-        remember = form.remember_me.data
-
-        user = User.query.filter_by(email = user_email).first()
-
-        # if user is not None and user.verify_password(form.password.data):
-        #     login_user(user,form.remember.data)
-        #     return redirect(request.args.get('next') or url_for('main.index'))
-
-        if user is not None and user.verify_password(user_password):
-            login_user(user,remember)
+    
+    if login_form.validate_on_submit():
+        # user_email = login_form.email.data
+        # user_password = login_form.password.data
+        # remember = login_form.remember_me.data
+        user = User.query.filter_by(email = login_form.email.data).first()
+        if user is not None and user.verify_password(login_form.password.data):
+            login_user(user,login_form.remember_me)
             flash("Karibu!! This is Utmost Pitches")
-            return render_template("main.index", user = user)
-            
-            flash("Invalid username or pasword")
-    return render_template("auth/login.html",form = form, title = title)    
+            return redirect(request.args.get('next') or url_for('main.index'))
+           
+        flash("Invalid username or pasword")
+    title = 'Utmost Pitches- Login'
+    return render_template("auth/login.html",login_form = login_form, title = title)    
 
 
-auth.route("/logout")
+
+@auth.route('/logout')
+@login_required
 def logout():
     logout_user()
-
-    flash("Hey! You have logged out Successfully")
-    return redirect(url_for("main.index"))    
+    flash('You have been successfully logged out')
+    return redirect(url_for("main.index"))
