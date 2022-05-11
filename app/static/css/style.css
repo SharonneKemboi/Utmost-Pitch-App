@@ -25,7 +25,7 @@ p{
 }
 
 em{
-    color: rgb(199, 235, 159);;
+    color: rgb(102, 19, 96);;
 }
 ul {
     list-style: none;
@@ -35,7 +35,7 @@ ul {
     position: relative;
     padding-left: 1.5em;  /* space to preserve indentation on wrap */
     font-size: 2rem;
-    color:rgb(250, 252, 246);
+    color:rgb(67, 23, 84);
   }
   li:before {
     content: '';  /* placeholder for the SVG */
@@ -86,11 +86,11 @@ ul {
 }
 
 .pitch-row {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
 }
 .pitch-card {
-    padding: 10px;
+    padding: 20px;
     border: 0px solid black;
     box-shadow: -1px 1px 16px -1px rgba(0, 0, 0, 0.75);
     background:rgb(47, 12, 47);
@@ -98,18 +98,20 @@ ul {
     overflow: hidden;
     transition: transform 1s;
 }
+
 .pitch-card:hover {
     transform: scale(1.1)
 }
 .pitch-comment {
     text-decoration: none;
+    color: rgb(149, 217, 110);
 }
 .pitch-comment:hover {
     transform: scale(1.2)
 }
 .comment-title {
     padding-bottom: 5px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(191, 223, 140);
     display: inline-block
 }
 hr {
@@ -150,3 +152,11 @@ hr {
     max-height: 300px;
     max-width: 300px;
 }
+
+form{
+    padding: 10px;
+    width: 50%;
+    font-size: 2rem;
+    color: rgb(190, 238, 153);
+}
+
