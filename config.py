@@ -24,10 +24,10 @@ class ProdConfig(Config):
     Args:
         Config - this is the parent config class from which we inherit its properties
     """
-    # SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-    uri = os.environ.get("DATABASE_URL")  # or other relevant config var
-    if uri.startswith("postgres://"):
-        uri = uri.replace("postgres://", "postgresql://", 1)
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL").replace("postgres://", "postgresql://", 1)
+    # uri = os.environ.get("DATABASE_URL")  # or other relevant config var
+    # if uri.startswith("postgres://"):
+    #     uri = uri.replace("postgres://", "postgresql://", 1)
 
 class TestConfig(Config):
     """
