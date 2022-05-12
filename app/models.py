@@ -76,6 +76,8 @@ class Pitch(db.Model):
         comments = Comment.query.filter_by(pitch_id = pitch.id).order_by(Comment.time.desc())
         return comments
 
+        
+
 class Comment(db.Model):
     """
     This is the class which we will use to create the comments for the pitches

@@ -26,7 +26,6 @@ def categories(category):
     return render_template("pitches.html", pitches = pitches, title = category.upper())
 
 
-
 @main.route("/<uname>/add/pitch", methods = ["GET","POST"])
 @login_required
 def add_pitch(uname):

@@ -11,7 +11,7 @@ class TestPitch(unittest.TestCase):
         This will create an instance of the User and Pitch before each test case
         """
         self.new_user = User(name = "sharonne")
-        self.new_pitch = Pitch(title = "Hola", user = self.new_user)
+        self.new_pitch = Pitch(title = "hello", user = self.new_user)
 
     def tearDown(self):
         """
@@ -32,7 +32,7 @@ class TestPitch(unittest.TestCase):
         Will test whether the new_pitch is instantiated correctly
         """
 
-        self.assertEquals(self.new_pitch.title, "Hola")
+        self.assertEqual(self.new_pitch.title, "hello")
 
     def test_save_pitch(self):
         """

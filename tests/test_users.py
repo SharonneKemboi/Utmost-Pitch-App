@@ -10,9 +10,12 @@ class TestUsers(unittest.TestCase):
         This will create an instance of the User before each test case
         """
 
-        self.new_user = User(name = "Vanessa", password = "Atarah")
+        self.new_user = User(name = "sharonne", password = "atara")
 
     def tearDown(self):
+        """
+        Will delete all the info from the db
+        """
         User.query.delete()
         Pitch.query.delete()
 
@@ -26,25 +29,25 @@ class TestUsers(unittest.TestCase):
         """
         Will test whether the User model is instantiated correctly
         """
-        self.assertEquals(self.new_user.name,"Vanessa")
+        self.assertEqual(self.new_user.name,"sharonne")
 
     def test_password_generate(self):
         """
         Will test whether a password is generated
         """
         self.assertTrue(self.new_user.pass_locked is not None)
-
+    
     def test_password_is_hashed(self):
         """
         Will test whether the password generated is not equal to the inputted password
         """
-        self.assertTrue(self.new_user.pass_locked is not "Atarah")
+        self.assertTrue(self.new_user.pass_locked is not "atara")
 
     def test_password_verifier(self):
         """
         Will test whether the user can decrypt the password with their password
         """
-        self.assertTrue(self.new_user.verify_pass("Atarah"))
+        self.assertTrue(self.new_user.verify_password("atara"))
 
     def test_save_user(self):
         """

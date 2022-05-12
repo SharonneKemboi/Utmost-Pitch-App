@@ -18,18 +18,6 @@ class Config:
    
 
 
-class DevConfig(Config):
-    """
-    This is the class which we will use to set the configurations during development stage of the app
-    Args:
-        COnfig - this is the parent config class from which we inherit its properties
-    """
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Atara@localhost/pitches'
-
-    DEBUG = True
-  
-
-
 class ProdConfig(Config):
     """
     This is the class which we will use to set the configurations during production stage of the app
@@ -39,7 +27,6 @@ class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 
-
 class TestConfig(Config):
     """
     This is the class which we will use to set the configurations during testing stage of the app
@@ -47,6 +34,18 @@ class TestConfig(Config):
         Config - this is the parent config class from which we inherit its properties
     """
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Atara@localhost/pitches_test'
+
+
+class DevConfig(Config):
+    """
+    This is the class which we will use to set the configurations during development stage of the app
+    Args:
+        COnfig - this is the parent config class from which we inherit its properties
+    """
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://postgres:Atara@localhost/pitches'
+
+    DEBUG = True
+
 
 
 config_options = {

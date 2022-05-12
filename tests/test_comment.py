@@ -12,8 +12,8 @@ class TestComment(unittest.TestCase):
         """
 
         self.new_user = User(name = "sharonne")
-        self.new_pitch = Pitch(title = "subscribe", user = self.new_user)
-        self.new_comment = Comment(content = "hello", user = self.new_user, pitch = self.new_pitch)
+        self.new_pitch = Pitch(title = "hello", user = self.new_user)
+        self.new_comment = Comment(content = "winning", user = self.new_user, pitch = self.new_pitch)
 
     def tearDown(self):
         """
@@ -33,7 +33,7 @@ class TestComment(unittest.TestCase):
         """
         Will test whether the comment is instantiated correctly
         """
-        self.assertEquals(self.new_comment.content, "hello")
+        self.assertEquals(self.new_comment.content, "winning")
 
     def test_relationship_picth(self):
         """
@@ -41,7 +41,7 @@ class TestComment(unittest.TestCase):
         """
 
         pitch_title = self.new_comment.pitch.title
-        self.assertTrue(pitch_title == "subscribe")
+        self.assertTrue(pitch_title == "hello")
 
     def test_relationship_user(self):
         """
@@ -49,4 +49,4 @@ class TestComment(unittest.TestCase):
         """
 
         user_name = self.new_comment.user.name
-        self.assertTrue(user_name == "sharonne") 
+        self.assertTrue(user_name == "sharonne")
